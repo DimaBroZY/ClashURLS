@@ -21,101 +21,49 @@ jobs:
         run: |
           echo "RELEASE_NAME=Released on $(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "opencck_porno=https://iplist.opencck.org/?format=text&data=domains&group=porn" >> $GITHUB_ENV
-          echo "opencck_discord=https://iplist.opencck.org/?format=text&data=domains&group=discord" >> $GITHUB_ENV
-          echo "opencck_youtube=https://iplist.opencck.org/?format=text&data=domains&group=youtube" >> $GITHUB_ENV
-          echo "opencck_socials=https://iplist.opencck.org/?format=text&data=domains&group=socials" >> $GITHUB_ENV
-          echo "opencck_torrent=https://iplist.opencck.org/?format=text&data=domains&group=torrent" >> $GITHUB_ENV
-          echo "opencck_tools=https://iplist.opencck.org/?format=text&data=domains&group=tools" >> $GITHUB_ENV
-          echo "opencck_music=https://iplist.opencck.org/?format=text&data=domains&group=music" >> $GITHUB_ENV
+          echo "opencck_anime=https://iplist.opencck.org/?format=text&data=domains&group=anime" >> $GITHUB_ENV
+          echo "opencck_art=https://iplist.opencck.org/?format=text&data=domains&group=art" >> $GITHUB_ENV
+          echo "opencck_games=https://iplist.opencck.org/?format=text&data=domains&group=games" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout the main branch
         uses: actions/checkout@v5
 
-      - name: Generate porno.txt file
+      - name: Generate anime.txt file
         run: |
-          echo "payload:" > porno.txt
-          curl -sSL ${opencck_porno} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
+          echo "payload:" > anime.txt
+          curl -sSL ${opencck_anime} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
             if [[ $domain =~ ^www\. ]]; then
-              echo "  - '${domain}'" >> porno.txt
-              echo "  - '+.${domain#www.}'" >> porno.txt
+              echo "  - '${domain}'" >> anime.txt
+              echo "  - '+.${domain#www.}'" >> anime.txt
             else
-              echo "  - '+.${domain}'" >> porno.txt
+              echo "  - '+.${domain}'" >>anime.txt
             fi
           done
 
-      - name: Generate discord.txt file
+      - name: Generate art.txt file
         run: |
-          echo "payload:" > discord.txt
-          curl -sSL ${opencck_discord} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
+          echo "payload:" > art.txt
+          curl -sSL ${opencck_art} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
             if [[ $domain =~ ^www\. ]]; then
-              echo "  - '${domain}'" >> discord.txt
-              echo "  - '+.${domain#www.}'" >> discord.txt
+              echo "  - '${domain}'" >> art.txt
+              echo "  - '+.${domain#www.}'" >> art.txt
             else
-              echo "  - '+.${domain}'" >> discord.txt
+              echo "  - '+.${domain}'" >> art.txt
             fi
           done
 
-      - name: Generate youtube.txt file
+      - name: Generate games.txt file
         run: |
-          echo "payload:" > youtube.txt
-          curl -sSL ${opencck_youtube} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
+          echo "payload:" > games.txt
+          curl -sSL ${opencck_games} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
             if [[ $domain =~ ^www\. ]]; then
-              echo "  - '${domain}'" >> youtube.txt
-              echo "  - '+.${domain#www.}'" >> youtube.txt
+              echo "  - '${domain}'" >> games.txt
+              echo "  - '+.${domain#www.}'" >> games.txt
             else
-              echo "  - '+.${domain}'" >> youtube.txt
+              echo "  - '+.${domain}'" >> games.txt
             fi
-          done
-
-      - name: Generate socials.txt file
-        run: |
-          echo "payload:" > socials.txt
-          curl -sSL ${opencck_socials} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
-            if [[ $domain =~ ^www\. ]]; then
-              echo "  - '${domain}'" >> socials.txt
-              echo "  - '+.${domain#www.}'" >> socials.txt
-            else
-              echo "  - '+.${domain}'" >> socials.txt
-            fi
-          done
-
-      - name: Generate torrent.txt file
-        run: |
-          echo "payload:" > torrent.txt
-          curl -sSL ${opencck_torrent} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
-            if [[ $domain =~ ^www\. ]]; then
-              echo "  - '${domain}'" >> torrent.txt
-              echo "  - '+.${domain#www.}'" >> torrent.txt
-            else
-              echo "  - '+.${domain}'" >> torrent.txt
-            fi
-          done
-
-      - name: Generate tools.txt file
-        run: |
-          echo "payload:" > tools.txt
-          curl -sSL ${opencck_tools} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
-            if [[ $domain =~ ^www\. ]]; then
-              echo "  - '${domain}'" >> tools.txt
-              echo "  - '+.${domain#www.}'" >> tools.txt
-            else
-              echo "  - '+.${domain}'" >> tools.txt
-            fi
-          done
-
-      - name: Generate music.txt file
-        run: |
-          echo "payload:" > music.txt
-          curl -sSL ${opencck_music} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
-            if [[ $domain =~ ^www\. ]]; then
-              echo "  - '${domain}'" >> music.txt
-              echo "  - '+.${domain#www.}'" >> music.txt
-            else
-              echo "  - '+.${domain}'" >> music.txt
-            fi
-          done
+          done  
 
       - name: Move files to publish directory
         run: |
@@ -151,4 +99,5 @@ jobs:
           cd publish || exit 1
           for file in $(ls); do
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
+
           done
