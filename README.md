@@ -78,7 +78,7 @@ All rules are generated based on domain lists from [OpenCCK](https://iplist.open
 5. Run the workflow manually or wait for automatic execution
 
 ## Features
-
+- **Daily Updates**: Automatic rule generation every day at 06:00 UTC
 - **Multiple Categories**: 7 different rule categories for flexible traffic management
 - **CDN Support**: Files available through both GitHub raw URLs and jsDelivr CDN
 - **Wildcard Support**: Proper handling of domain wildcards for comprehensive coverage
@@ -94,4 +94,5 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 - [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) for inspiration and project structure
 
 - The open-source community for continuous improvements
+
 
