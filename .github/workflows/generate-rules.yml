@@ -22,6 +22,7 @@ jobs:
           echo "opencck_anime=https://iplist.opencck.org/?format=text&data=domains&group=anime" >> $GITHUB_ENV
           echo "opencck_art=https://iplist.opencck.org/?format=text&data=domains&group=art" >> $GITHUB_ENV
           echo "opencck_games=https://iplist.opencck.org/?format=text&data=domains&group=games" >> $GITHUB_ENV
+          echo "opencck_minecraft=https://beta.iplist.opencck.org/?format=text&data=domains&site=modrinth.com" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout the main branch
@@ -63,6 +64,18 @@ jobs:
             fi
           done  
 
+      - name: Generate minecraft.txt file
+        run: |
+          echo "payload:" > minecraft.txt
+          curl -sSL ${opencck_games} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
+            if [[ $domain =~ ^www\. ]]; then
+              echo "  - '${domain}'" >> minecraft.txt
+              echo "  - '+.${domain#www.}'" >> minecraft.txt
+            else
+              echo "  - '+.${domain}'" >> minecraft.txt
+            fi
+          done  
+          
       - name: Move files to publish directory
         run: |
           mkdir -p publish
@@ -99,4 +112,5 @@ jobs:
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
 
           done
+
 
