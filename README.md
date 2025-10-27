@@ -67,6 +67,7 @@ All rules are generated based on domain lists from [OpenCCK](https://iplist.open
 - Anime Content: https://iplist.opencck.org/?format=text&data=domains&group=anime
 - Art: https://iplist.opencck.org/?format=text&data=domains&group=art
 - Games: https://iplist.opencck.org/?format=text&data=domains&group=games
+- Minecraft: https://beta.iplist.opencck.org/?format=text&data=domains&site=modrinth.com
 
 ## Installation
 
@@ -93,3 +94,4 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 - [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) for inspiration and project structure
 
 - The open-source community for continuous improvements
+
