@@ -1,7 +1,5 @@
 # OpenCCK Clash Rules
 
-[Русская версия](README_RU.md) | English
-
 This project generates rules for [Clash Premium](https://github.com/Dreamacro/clash/releases/tag/premium) based on domain lists from [OpenCCK](https://iplist.opencck.org/). Automatic builds occur daily at 21:00 UTC using GitHub Actions.
 
 ## Available Rule Lists
@@ -14,17 +12,18 @@ Use these URLs in your Clash configuration in the `rule-providers` section:
   - `https://raw.githubusercontent.com/DimaBroZY/ClashURLS/release/art.txt`
   - `https://cdn.jsdelivr.net/gh/DimaBroZY/ClashURLS@release/art.txt`
 
-- **Anime Content Sites (art.txt)**:
+- **Anime Content Sites (anime.txt)**:
   - `https://raw.githubusercontent.com/DimaBroZY/ClashURLS/release/anime.txt`
   - `https://cdn.jsdelivr.net/gh/DimaBroZY/ClashURLS@release/anime.txt`
  
-- **Minecraft Content Sites (art.txt)**:
+- **Minecraft Content Sites (minecraft.txt)**:
   - `https://raw.githubusercontent.com/DimaBroZY/ClashURLS/release/minecraft.txt`
   - `https://cdn.jsdelivr.net/gh/DimaBroZY/ClashURLS@release/minecraft.txt`
 
- - **Games Content Sites (games.txt)**:
+- **Games Content Sites (games.txt)**:
   - `https://raw.githubusercontent.com/DimaBroZY/ClashURLS/release/games.txt`
   - `https://cdn.jsdelivr.net/gh/DimaBroZY/ClashURLS@release/games.txt`
+
 
 ## Usage
 
@@ -94,5 +93,6 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 - [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) for inspiration and project structure
 
 - The open-source community for continuous improvements
+
 
 
