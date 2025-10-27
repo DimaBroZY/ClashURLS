@@ -67,7 +67,7 @@ jobs:
       - name: Generate minecraft.txt file
         run: |
           echo "payload:" > minecraft.txt
-          curl -sSL ${opencck_games} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
+          curl -sSL ${opencck_minecraft} | grep -v '^#' | grep -v '^$' | while IFS= read -r domain; do
             if [[ $domain =~ ^www\. ]]; then
               echo "  - '${domain}'" >> minecraft.txt
               echo "  - '+.${domain#www.}'" >> minecraft.txt
@@ -112,5 +112,6 @@ jobs:
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
 
           done
+
 
 
